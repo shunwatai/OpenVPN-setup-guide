@@ -62,8 +62,7 @@ established, further checks are performed before the authentication is complete.
 
 ### Do on server side, make the **server certificate and private key**
 
-1. generate a **key pair** for the server, 2 files will be created ```/etc/easy-rsa/pki/reqs/<servername>.req``` &  
-```/etc/easy-rsa/pki/private/<servername>.key```
+1. generate a **key pair** for the server, 2 files will be created ```/etc/easy-rsa/pki/reqs/<servername>.req``` & ```/etc/easy-rsa/pki/private/<servername>.key```
 
 		# cd /etc/easy-rsa
         # easyrsa gen-req <servername> nopass    ##change the name for servername
@@ -84,14 +83,14 @@ established, further checks are performed before the authentication is complete.
 		Keypair and certificate request completed. Your files are:
 		req: /etc/easy-rsa/pki/reqs/<servername>.req
 		key: /etc/easy-rsa/pki/private/<servername>.key
-        
+
 2. create the **Diffie-Hellman (DH) file**
 
         # openssl dhparam -out /etc/openvpn/dh.pem 2048
         Generating DH parameters, 2048 bit long safe prime, generator 2
 		This is going to take a long time
 		.................................................................................................+.................................................................................................................................
-        
+
 3. create the **HMAC key**. This will be used to add an additional HMAC signature to all SSL/TLS handshake packets. In 
 addition any UDP packet not having the correct HMAC signature will be immediately dropped
  
@@ -99,7 +98,7 @@ addition any UDP packet not having the correct HMAC signature will be immediatel
 
 ### Do on server side, create the **client** certificate and private key
 
-1. create 2 files ```/etc/easy-rsa/pki/reqs/<client>.req``` &  ```/etc/easy-rsa/pki/private/<client>.key```
+1. create 2 files ```/etc/easy-rsa/pki/reqs/<client>.req``` & ```/etc/easy-rsa/pki/private/<client>.key```
 
 		# cd /etc/easy-rsa
 		# easyrsa gen-req <clientname> nopass
@@ -124,8 +123,7 @@ addition any UDP packet not having the correct HMAC signature will be immediatel
     
 ### Do on server side, **Sign the certificates** and pass them back to the server and clients
 
-On the CA machine(Server), import and sign the certificate requests. 2 files will be generated 
-```/etc/easy-rsa/pki/issued/<servername>.crt``` &  ```/etc/easy-rsa/pki/issued/<client>.crt```
+On the CA machine(Server), import and sign the certificate requests. 2 files will be generated ```/etc/easy-rsa/pki/issued/<servername>.crt``` & ```/etc/easy-rsa/pki/issued/<client>.crt```
 
 1. import the ```.req``` files for server and cilent. **Optional step only for illustrating if there is a CA server, you have to transfer the server and client ```.req``` files for CA server to import ** 
 
