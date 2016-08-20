@@ -209,7 +209,7 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
         # mkdir /etc/openvpn/client
         # mv /etc/easy-rsa/pki/issued/<client>.crt /etc/easy-rsa/pki/private/<client>.key /etc/openvpn/ta.key /etc/openvpn/client
 
-### Do on server side, edit the **server configuration file**
+### Do on server side, edit the **server configuration file** and **enable forwarding** plus **iptables rules**.
 
 1. Copy the example server configuration file. For other distributions, the sample config may not in the same path, please locate it by following command ```find /usr/share/ |grep 'server.conf'```
 
@@ -226,6 +226,22 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
         .
         user nobody
         group nobody
+        
+3. enable [forwarding](https://wiki.archlinux.org/index.php/Internet_sharing#Enable_packet_forwarding)
+
+        # sysctl net.ipv4.ip_forward=1
+        
+4. make it persistent after a reboot
+
+        # vim /etc/sysctl.d/30-ipforward.conf
+    
+          net.ipv4.ip_forward=1
+      
+5. add iptables rules, replace ```iface_name```, e.g. ```eth0```
+
+        # iptables -A INPUT -i <iface_name> -p udp --dport 1194 -j ACCEPT
+        # iptables -A INPUT -i tun+ -j ACCEPT
+        # iptables -A FORWARD -i tun+ -j ACCEPT
 
 ### On server, edit the **client configuration file** and send it to client later
 
