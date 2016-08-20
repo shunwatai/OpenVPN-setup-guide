@@ -249,7 +249,7 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
 
         # cp /usr/share/openvpn/examples/client.conf /etc/openvpn/client/client.conf
 
-2. edit ```/etc/openvpn/client.conf```
+2. edit ```/etc/openvpn/client/client.conf```
 
         remote <server IP or hostname> 1194
         .
@@ -271,7 +271,33 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
 
 		# openvpn /etc/openvpn/server.conf
 
-### Do on client side, test the client connection
-#### Windows
+### Test the connection on Windows client
 
-#### Android
+####Do on server side
+
+1. copy ```ca.crt``` & ```ta.key``` to client directory to get ready for transfer to client side.
+
+        cp /etc/openvpn/{ca.crt,ta.key} /etc/openvpn/client/
+        
+2. Under the client directory should contains the following files.        
+
+        ll /etc/openvpn/client/
+        -rw------- 1 root root 1164 Aug 20 21:33 /etc/openvpn/client/ca.crt
+        -rw-r--r-- 1 root root 3443 Aug 20 20:47 /etc/openvpn/client/client.conf
+        -rw------- 1 root root 4353 Aug 20 19:49 /etc/openvpn/client/client1.crt
+        -rw------- 1 root root 1704 Aug 20 19:47 /etc/openvpn/client/client1.key
+        -rw------- 1 root root  636 Aug 20 21:15 /etc/openvpn/client/ta.key
+
+####Do on client side
+
+1. use any methods to send those files to client side. For me, on client side, I use SFTP connect to server by Filezilla to download the files.
+
+2. download the Openvpn client application from [official site](https://openvpn.net/index.php/open-source/downloads.html)
+
+3. move those files to ```C:\program files\openvpn\config```
+
+4. change the extension of ```client.conf``` to ``client.ovpn```
+
+5. start the client application and connect to server.
+
+
