@@ -288,16 +288,27 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
         -rw------- 1 root root 1704 Aug 20 19:47 /etc/openvpn/client/client1.key
         -rw------- 1 root root  636 Aug 20 21:15 /etc/openvpn/client/ta.key
 
-####Do on client side
+####Do on client side (Windows)
 
-1. use any methods to send those files to client side. For me, on client side, I use SFTP connect to server by Filezilla to download the files.
+1. use any methods to send those files to client side. For me, on Windows machine, I use SFTP connect to server by Filezilla to download the files.
 
 2. download the Openvpn client application from [official site](https://openvpn.net/index.php/open-source/downloads.html)
 
 3. move those files to ```C:\program files\openvpn\config```
 
-4. change the extension of ```client.conf``` to ``client.ovpn```
+4. change the extension of ```client.conf``` to ```client.ovpn```
 
 5. start the client application and connect to server.
 
+####Do on client side (Android)
+
+1. use any methods to send those files to client side. For me, on Android device, I use Airdroid to get the files.
+
+2. download the Openvpn client application from [Play Store](https://openvpn.net/index.php/open-source/downloads.html)
+
+3. Open the Openvpn app, tap the menu in the top right corner and tap "import from SD card"
+
+4. select the ```client.ovpn``` config file you just downloaded from server.
+
+5. connect to server.
 
