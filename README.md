@@ -304,7 +304,7 @@ On the CA machine(Server), import and sign the certificate requests. 2 files wil
 
 1. use any methods to send those files to client side. For me, on Android device, I use Airdroid to get the files.
 
-2. download the Openvpn client application from [Play Store](https://openvpn.net/index.php/open-source/downloads.html)
+2. download the Openvpn client application from [Play Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
 
 3. Open the Openvpn app, tap the menu in the top right corner and tap "import from SD card"
 
